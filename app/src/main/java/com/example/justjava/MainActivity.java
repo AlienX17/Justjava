@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.NumberFormat;
-
 /**
  * This app displays an order form to order coffee.
  */
@@ -58,25 +56,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
 
-        EditText nameField = (EditText) findViewById(R.id.name_field);
+        EditText nameField = findViewById(R.id.name_field);
         String name = nameField.getText().toString();
 
-        CheckBox whippedCreamCheckBox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        CheckBox whippedCreamCheckBox = findViewById(R.id.whipped_cream_checkbox);
         boolean hasWippedCream = whippedCreamCheckBox.isChecked();
         Log.v("MainActivity", "Has whipped cream: " + hasWippedCream);
 
-        CheckBox chocolateCheckBox = (CheckBox) findViewById(R.id.chocolate_checkbox);
+        CheckBox chocolateCheckBox = findViewById(R.id.chocolate_checkbox);
         boolean hasChocolateCream = chocolateCheckBox.isChecked();
 
         int price = calculatePrice(hasChocolateCream,hasWippedCream);
         String priceMessage = createOrderSummary(price, hasWippedCream, hasChocolateCream, name);
         displayMessage(priceMessage);
 
-        /**
+        /*
          *  EMAIL SENDER
          */
         Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setType("*/*");
         intent.setData(Uri.parse("mailto: "));
         intent.putExtra(Intent.EXTRA_SUBJECT, "Coffee command " + name);
         intent.putExtra(Intent.EXTRA_TEXT, priceMessage);
@@ -100,12 +97,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String createOrderSummary(int price, boolean hasWhippedCream, boolean hasChocolateCream, String name){
-        String priceMessage = "Name: " + name;
-        priceMessage = priceMessage + "\nAdd whipped cream?: " + hasWhippedCream;
-        priceMessage = priceMessage + "\nAdd chocolate?: " + hasChocolateCream;
-        priceMessage = priceMessage + "\nQuantity: " + quantity;
-        priceMessage = priceMessage + "\nPrice: " + price + "$";
-        priceMessage += "\n" + getString(R.string.thank_you);
+        String priceMessage = getString(R.string.person_name, name);
+        priceMessage = priceMessage + getString(R.string.add_whipped_cream, hasWhippedCream);
+        priceMessage = priceMessage + getString(R.string.add_chocolate, hasChocolateCream);
+        priceMessage = priceMessage + getString(R.string.quantity_message, quantity);
+        priceMessage = priceMessage + getString(R.string.price_message, price);
+        priceMessage += getString(R.string.thank_you);
         return priceMessage;
     }
 
@@ -114,12 +111,12 @@ public class MainActivity extends AppCompatActivity {
      * This method displays the given quantity value on the screen.
      */
     private void display(int number) {
-        TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("" + number);
+        TextView quantityTextView = findViewById(R.id.quantity_text_view);
+        quantityTextView.setText(String.valueOf(number));
     }
 
     private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
+        TextView orderSummaryTextView = findViewById(R.id.order_summary_text_view);
         orderSummaryTextView.setTextColor(Color.BLACK);
         orderSummaryTextView.setText(message);
     }

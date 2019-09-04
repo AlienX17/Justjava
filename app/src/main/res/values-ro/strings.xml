@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_chocolate">Adauga ciocolata: %b</string>
+    <string name="add_whipped_cream">Adauga frisca: %b</string>
+    <string name="chocolate">Ciocolata</string>
+    <string name="minus">-</string>
+    <string name="name">Nume</string>
+    <string name="order">Comanda</string>
+    <string name="order_summary">Total comanda</string>
+    <string name="person_name">Nume: %s</string>
+    <string name="plus">+</string>
+    <string name="price_message">Pret: %d lei</string>
+    <string name="quantity">Cantitate</string>
+    <string name="quantity_message">Cantitate: %d</string>
+    <string name="thank_you">Multumesc !</string>
+    <string name="toppings">Topping-uri</string>
+    <string name="whipped_cream">Frisca</string>
+</resources>
